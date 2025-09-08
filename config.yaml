@@ -1,0 +1,51 @@
+# Simple Model Training Configuration
+
+# Model Selection
+model_name: voxelmorph  # Options: "transmorph", "raft", or "voxelmorph"
+
+# Training Parameters
+batch_size: 1
+learning_rate: 0.0001
+num_epochs: 5
+steps_per_epoch: null  # null = auto (use all data), or specify number
+device: cpu
+
+# Optimizer Settings
+optimizer: adam  # Options: "adam", "sgd", "adamw"
+
+# Loss Settings
+loss_type: mse  # Options: "mse", "ncc", "l1"
+
+# Data Paths
+train_data_dir: data/train
+val_data_dir: data/val
+
+# Input Size
+# TransMorph: [Height, Width, Depth] - 3D data
+# RAFT: [Height, Width] - 2D data
+input_size: [64, 64, 32]
+
+# Model-Specific Parameters
+# TransMorph parameters
+embed_dim: 96
+num_heads: [4, 4, 4, 4]
+depths: [2, 2, 4, 2]
+window_size: [7, 7, 7]
+drop_path_rate: 0.3
+
+# RAFT parameters  
+hidden_dim: 64
+context_dim: 64
+corr_levels: 4
+corr_radius: 3
+flow_iters: 12
+
+# VoxelMorph parameters
+voxelmorph_int_steps: 7
+voxelmorph_int_downsize: 2
+voxelmorph_unet_features: [16, 32, 32, 32]
+voxelmorph_unet_conv_layers: 2
+
+# Output Directories
+output_dir: ./outputs
+checkpoint_dir: ./outputs
